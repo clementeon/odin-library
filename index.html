@@ -13,25 +13,27 @@
 	<div class="container">
 		<div class="header">
 			<h1>My Books</h1>
-			<button type="button">Add Book</button>
+			<button type="button" id="add">Add Book</button>
 		</div>
 		<div id="library">
 		</div>
 		<div id="form-page">
 			<div class="add-book">
-				<form action="POST" id="book-form">
+				<form action="POST" id="book-form" class="submitNew">
+					<input type="hidden" id="edit-book-id">
 					<label for="title">Title: </label>
-					<input type="text" name="title" id="title">
+					<input type="text" name="title" id="title" required>
 
 					<label for="author">Author:</label>
-					<input type="text" name="author" id="author">
+					<input type="text" name="author" id="author" required>
 
 					<label for="pages">Number of Pages:</label>
-					<input type="number" min="1" name="pages" id="pages">
+					<input type="number" min="1" name="pages" id="pages" required>
 
 					<input type="checkbox" name="read" id="read">
 					<label for="read">Read</label>
 					<button type="submit">Submit</button>
+					<button type="button" id="cancel">Cancel</button>
 				</form>
 			</div>
 		</div>
