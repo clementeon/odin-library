@@ -31,20 +31,24 @@ function createCard(book) {
 	newBook.classList.add("book");
 	newBook.id = book.id;
 
-	const title = document.createElement("p");
+	const title = document.createElement("h2");
 	title.textContent = `${book.title}`;
 	title.classList.add("title");
 
 	const author = document.createElement("p");
-	author.textContent = `${book.author}`;
+	author.textContent = `Author: ${book.author}`;
 	author.classList.add("author");
 
 	const pages = document.createElement("p");
-	pages.textContent = `${book.pages}`;
+	pages.textContent = `Pages: ${book.pages} pages`;
 	pages.classList.add("pages");
 
 	const read = document.createElement("p");
-	read.textContent = `${book.read}`;
+	if (book.read) {
+		read.textContent = `Status: Read`;
+	} else {
+		read.textContent = `Status: Not Read`;
+	}
 	read.classList.add("read");
 
 	const editButton = document.createElement("button");
@@ -78,7 +82,7 @@ function createCard(book) {
 		formAuthor.value = `${book.author}`;
 		formPages.value = `${book.pages}`;
 		formCheckbox.checked = book.read;
-		document.getElementById('edit-book-id').value = newBook.id;
+		document.getElementById("edit-book-id").value = newBook.id;
 	});
 
 	newBook.append(title, author, pages, read, buttonContainer);
@@ -107,9 +111,17 @@ form.addEventListener("submit", function (event) {
 			for (let current of books) {
 				if (current.id == target) {
 					current.querySelector(".title").textContent = title;
-					current.querySelector(".author").textContent = author;
-					current.querySelector(".pages").textContent = pages;
-					current.querySelector(".read").textContent = read;
+					current.querySelector(".author").textContent =
+						`Author: ${author}`;
+					current.querySelector(".pages").textContent =
+						`Pages: ${pages} pages`;
+					if (read) {
+						current.querySelector(".read").textContent =
+							"Status: Read";
+					} else {
+						current.querySelector(".read").textContent =
+							"Status: Not Read";
+					}
 				}
 			}
 
@@ -122,7 +134,7 @@ form.addEventListener("submit", function (event) {
 				}
 			}
 		}
-		form.className = 'submitNew';
+		form.className = "submitNew";
 	} else {
 		const tempBook = new Book(title, author, pages, read);
 		myLibrary.push(tempBook);
